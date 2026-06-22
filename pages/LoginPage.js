@@ -25,4 +25,29 @@ export class LoginPage {
   async verifyInvalidLoginMessage() {
     await expect(this.page.getByText("Invalid credentials")).toBeVisible();
   }
+  async verifyInvalidemail() {
+    const message = await this.emailInput.evaluate(
+      (el) => el.validationMessage,
+    );
+    expect(message).toContain("@");
+  }
+
+  async verifyEmptyFeilds() {
+    const message = await this.emailInput.evaluate(
+      (el) => el.validationMessage,
+    );
+    expect(message).toContain("Please fill out this field.");
+  }
+   async verifyEmptyPasswordFeild() {
+    const message = await this.passwordInput.evaluate(
+      (el) => el.validationMessage,
+    );
+    expect(message).toContain("Please fill out this field.");
+  }
+
+  async verifyVisiblityofLoginPageElements() {
+    await expect(this.emailInput).toBeVisible();
+    await expect(this.passwordInput).toBeVisible();
+    await expect(this.submitButton).toBeVisible();
+  }
 }
