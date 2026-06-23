@@ -17,6 +17,7 @@ export class LoginPage {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.submitButton.click();
+    await this.page.waitForURL("**/teacher/dashboard");
   }
 
   async verifyPageLoaded() {
@@ -38,7 +39,7 @@ export class LoginPage {
     );
     expect(message).toContain("Please fill out this field.");
   }
-   async verifyEmptyPasswordFeild() {
+  async verifyEmptyPasswordFeild() {
     const message = await this.passwordInput.evaluate(
       (el) => el.validationMessage,
     );
