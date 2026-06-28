@@ -1,5 +1,5 @@
-const { test } = require("../fixtures/authfixtures");
-const { SubjectsPage } = require("../pages/SubjectPage");
+const { test } = require("../../fixtures/authfixtures");
+const { SubjectsPage } = require("../../pages/SubjectPage");
 
 test.describe("Subject Tests", () => {
   let subjectsPage;

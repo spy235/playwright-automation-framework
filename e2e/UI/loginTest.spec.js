@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
-import { DashboardPage } from "../pages/DashboardPage";
-import { users } from "../test-data/user";
-import { ToastMessages } from "../pages/ToastMessages";
+import { LoginPage } from "../../pages/LoginPage";
+import { DashboardPage } from "../../pages/DashboardPage";
+import { users } from "../../test-data/user";
+import { ToastMessages } from "../../pages/ToastMessages";
 
 test.describe("Login Tests", () => {
   let loginPage;
