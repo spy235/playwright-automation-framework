@@ -1,11 +1,13 @@
-import { page, expect } from "@playwright/test";
+const { expect } = require("@playwright/test");
 
-export class ToastMessages {
+class ToastMessages {
   constructor(page) {
     this.page = page;
   }
 
   async verifyInvalidLoginMessage() {
-    await expect(this.page.getByText("Invalid credentials.")).toBeVisible();
+    await expect(this.page.getByText(/invalid credentials/i)).toBeVisible();
   }
 }
+
+module.exports = { ToastMessages };

@@ -1,18 +1,18 @@
 // @ts-check
-import { defineConfig, devices } from "@playwright/test";
+const { defineConfig } = require("@playwright/test");
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
+// const dotenv = require('dotenv');
+// const path = require('path');
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-export default defineConfig({
+module.exports = defineConfig({
   testDir: "./e2e",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -34,14 +34,11 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on",
-    screenshot: 'only-on-failure',
+    screenshot: "only-on-failure",
   },
 
   /* Configure projects for major browsers */
   projects: [
-    // {
-    //   name: "setup",
-    // },
     {
       name: "chromium",
       use: {
@@ -49,11 +46,4 @@ export default defineConfig({
       },
     },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });

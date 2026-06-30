@@ -1,10 +1,12 @@
-export const users = {
+const users = {
   teacherVaildCreds: {
     email: "testusermap1@gmail.com",
     password: "Yashas@235@",
   },
-    teacherInvalidCreds: {
+  teacherInvalidCreds: {
     email: "testusermap1@gmail.com",
     password: "Yadsfdsfsdfdsf",
-  }
+  },
 };
+
+module.exports = { users };

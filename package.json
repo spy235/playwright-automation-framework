@@ -6,11 +6,16 @@
     "playwright": "^1.61.0"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^9.0.0",
     "@faker-js/faker": "^9.9.0",
     "@playwright/test": "^1.61.0",
     "@types/node": "^26.0.0",
     "allure-playwright": "^3.10.2",
     "prisma": "^6.19.3"
   },
-  "scripts": {}
+  "scripts": {
+    "test": "cucumber-js",
+    "test:ui": "cucumber-js features/ui --require features/support/**/*.js --require features/steps/**/*.js --format progress",
+    "test:api": "cucumber-js features/api --require features/support/**/*.js --require features/steps/**/*.js --format progress"
+  }
 }

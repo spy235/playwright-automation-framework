@@ -1,6 +1,6 @@
-import { expect } from "playwright/test";
+const { expect } = require("@playwright/test");
 
-export class StudentPage {
+class StudentPage {
   constructor(page) {
     this.page = page;
   }
@@ -13,18 +13,16 @@ export class StudentPage {
       .getByPlaceholder("Enter Roll Number")
       .fill(student.rollNumber);
     await this.page.getByPlaceholder("Enter Password").fill(student.password);
-
     await this.page
       .locator("input[name='confirmPassword']")
       .fill(student.password);
-
     await this.page.locator("#subject-select-0").selectOption(student.subject);
-
     await this.page.getByPlaceholder("Marks").fill(student.marks);
-
     await this.page.locator("#create-student-btn").click();
     await expect(
-      await this.page.getByText("Student added successfully!"),
+      this.page.getByText("Student added successfully!"),
     ).toBeVisible();
   }
 }
+
+module.exports = { StudentPage };

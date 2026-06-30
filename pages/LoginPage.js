@@ -1,6 +1,6 @@
-import { expect } from "@playwright/test";
+const { expect } = require("@playwright/test");
 
-export class LoginPage {
+class LoginPage {
   constructor(page) {
     this.page = page;
 
@@ -17,38 +17,46 @@ export class LoginPage {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.submitButton.click();
-    await this.page.waitForURL("**/teacher/dashboard");
   }
 
   async verifyPageLoaded() {
     await expect(this.page).toHaveTitle("Teacher Login - Student Tracker");
   }
-  async verifyInvalidLoginMessage() {
-    await expect(this.page.getByText("Invalid credentials")).toBeVisible();
+
+  async verifyDashboardLoaded() {
+    await this.page.waitForURL("**/teacher/dashboard");
   }
-  async verifyInvalidemail() {
+
+  async verifyInvalidLoginMessage() {
+    await expect(this.page.getByText(/invalid credentials/i)).toBeVisible();
+  }
+
+  async verifyInvalidEmailFormat() {
     const message = await this.emailInput.evaluate(
       (el) => el.validationMessage,
     );
     expect(message).toContain("@");
   }
 
-  async verifyEmptyFeilds() {
+  async verifyEmptyFields() {
     const message = await this.emailInput.evaluate(
       (el) => el.validationMessage,
     );
     expect(message).toContain("Please fill out this field.");
   }
-  async verifyEmptyPasswordFeild() {
+
+  async verifyEmptyPasswordField() {
     const message = await this.passwordInput.evaluate(
       (el) => el.validationMessage,
     );
     expect(message).toContain("Please fill out this field.");
   }
 
-  async verifyVisiblityofLoginPageElements() {
+  async verifyVisibilityOfLoginPageElements() {
     await expect(this.emailInput).toBeVisible();
     await expect(this.passwordInput).toBeVisible();
     await expect(this.submitButton).toBeVisible();
   }
 }
+
+module.exports = { LoginPage };
