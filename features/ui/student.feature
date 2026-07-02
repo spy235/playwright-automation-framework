@@ -5,5 +5,6 @@ Feature: Student management
 
   Scenario: Add a new student
     Given I am logged in as a teacher
+    And required subjects exist for the new student
     When I create a new student
     Then the student should be saved successfully

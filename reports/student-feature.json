@@ -1,0 +1,92 @@
+[
+  {
+    "description": "  As a teacher\n  I want to add a student\n  So that the student appears in the system",
+    "elements": [
+      {
+        "description": "",
+        "id": "student-management;add-a-new-student",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Add a new student",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 367030500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I am logged in as a teacher",
+            "match": {
+              "location": "features\\steps\\ui.steps.js:66"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 758868200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "required subjects exist for the new student",
+            "match": {
+              "location": "features\\steps\\ui.steps.js:77"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 256451099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "I create a new student",
+            "match": {
+              "location": "features\\steps\\ui.steps.js:104"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1013754800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "the student should be saved successfully",
+            "match": {
+              "location": "features\\steps\\ui.steps.js:110"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 566899
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 235072900
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "student-management",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Student management",
+    "tags": [],
+    "uri": "features\\ui\\student.feature"
+  }
+]

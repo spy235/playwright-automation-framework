@@ -57,6 +57,25 @@ class LoginPage {
     await expect(this.passwordInput).toBeVisible();
     await expect(this.submitButton).toBeVisible();
   }
+
+  // Backwards-compatible wrappers for existing tests (some tests call
+  // misspelled or differently-cased method names). Keep these thin so the
+  // public API remains consistent while tests continue to pass.
+  async verifyInvalidemail() {
+    return this.verifyInvalidEmailFormat();
+  }
+
+  async verifyEmptyFeilds() {
+    return this.verifyEmptyFields();
+  }
+
+  async verifyEmptyPasswordFeild() {
+    return this.verifyEmptyPasswordField();
+  }
+
+  async verifyVisiblityofLoginPageElements() {
+    return this.verifyVisibilityOfLoginPageElements();
+  }
 }
 
 module.exports = { LoginPage };

@@ -6,6 +6,11 @@ const { StudentPage } = require("../../pages/StudentPage");
 const { SubjectsPage } = require("../../pages/SubjectPage");
 const { AttendancePage } = require("../../pages/AttendencePage");
 const { createStudentData } = require("../../test-data/studentFactory");
+const { teacherLogin } = require("../../e2e/API/routes/auth.api");
+const {
+  getSubjects,
+  createSubject,
+} = require("../../e2e/API/routes/subject.api");
 
 Given("I am on the teacher login page", async function () {
   this.loginPage = new LoginPage(this.page);
@@ -69,8 +74,35 @@ Given("I am logged in as a teacher", async function () {
   await dashboardPage.verifyDashboardLoaded();
 });
 
-When("I create a new student", async function () {
+Given("required subjects exist for the new student", async function () {
+  // generate student data and keep it for later steps
   this.student = createStudentData();
+
+  // obtain API token
+  const loginResp = await teacherLogin(
+    this.requestContext,
+    this.users.teacherVaildCreds.email,
+    this.users.teacherVaildCreds.password,
+  );
+  const loginBody = await loginResp.json();
+  const token = loginBody.token;
+
+  // fetch existing subjects
+  const subjectsResp = await getSubjects(this.requestContext, token);
+  const subjects = await subjectsResp.json();
+  const subjectNames = subjects.map((s) => s.name && s.name.trim());
+
+  // create subject if missing
+  if (!subjectNames.includes(this.student.subject)) {
+    await createSubject(this.requestContext, token, {
+      name: this.student.subject,
+      code: `SUB${Date.now()}`,
+    });
+  }
+});
+
+When("I create a new student", async function () {
+  // student data is prepared in the precondition step
   const studentPage = new StudentPage(this.page);
   await studentPage.createStudent(this.student);
 });
